@@ -21,3 +21,8 @@ def get_local_ip_for_target(targethost, port):
 		return s.getsockname()[0]
 	finally:
 		s.close()
+
+
+if __name__=='__main__':
+	print('discovering...')
+	print('found %s'%autodiscover_ip())

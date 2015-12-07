@@ -31,10 +31,12 @@ mapping = {
 
 stdscr = curses.initscr()
 try:
+	lastKey = None
 	key = None
 	with Remote(myip, mymac, tvip) as remote:
-		while key != 27:
+		while key != 113:
 			#curses.flushinp()
+			lastKey = key
 			key = stdscr.getch()
 			print("got %s %s"%(str(key), key))
 			rkey = mapping.get(str(key))
