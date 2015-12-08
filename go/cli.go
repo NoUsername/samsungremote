@@ -42,4 +42,6 @@ func main() {
 
 	sendKey(remote, "KEY_VOLUP")
 	sendKey(remote, "KEY_VOLDOWN")
+
+	close(remote)
 }

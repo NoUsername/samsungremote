@@ -89,3 +89,7 @@ func createMessage(buffer *bytes.Buffer) []byte {
 
 	return msgBuf.Bytes()
 }
+
+func close(remote Remote) {
+	remote.Connection.Close()
+}
