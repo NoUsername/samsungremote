@@ -7,9 +7,11 @@ import autodiscover
 from tvcontrol import Remote
 import curses
 
-tvip = autodiscover.autodiscover_ip()
-data = autodiscover.get_local_ip_for_target(tvip, Remote.TV_PORT)
-myip = data
+# simple hack to get the local ip. assumes that the network-IF which is used
+#  to connect to the internet is the same you use for communicating with your tv
+#  also assumes you have internet ;)
+myip = autodiscover.get_local_ip_for_target('8.8.8.8', '53')
+tvip = autodiscover.autodiscover_tv_ip(myip)
 mymac = '11:11:11:11:11:11'.replace(":", "-")
 
 mapping = {

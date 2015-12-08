@@ -3,9 +3,8 @@
 import autodiscover
 from tvcontrol import Remote
 
-tvip = autodiscover.autodiscover_ip()
-data = autodiscover.get_local_ip_for_target(tvip, Remote.TV_PORT)
-myip = data
+myip = autodiscover.get_local_ip_for_target('8.8.8.8', 53)
+tvip = autodiscover.autodiscover_tv_ip(myip)
 mymac = '11:11:11:11:11:11'.replace(":", "-")
 
 with Remote(myip, mymac, tvip) as remote:
