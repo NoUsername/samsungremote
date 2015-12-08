@@ -10,10 +10,25 @@ import (
 	"time"
 )
 
-var debugLog bool = false
+type SearchOpts struct {
+	SearchSeconds int
+	DebugLog      bool
+}
+
+func defaults(opts *SearchOpts) {
+	if opts.SearchSeconds == 0 {
+		opts.SearchSeconds = 3
+	}
+}
 
 func getSamsungIp() (string, error) {
-	devices, err := ssdp.Search("upnp:rootdevice", 5*time.Second)
+	return getSamsungIpAdv(&SearchOpts{DebugLog: false})
+}
+
+func getSamsungIpAdv(opts *SearchOpts) (string, error) {
+	defaults(opts)
+	debugLog := opts.DebugLog
+	devices, err := ssdp.Search("upnp:rootdevice", time.Duration(opts.SearchSeconds)*time.Second)
 	if err != nil {
 		return "", errors.New("could not run upnp search")
 	}

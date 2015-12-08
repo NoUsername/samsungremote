@@ -6,7 +6,8 @@ import (
 )
 
 func testSearch() {
-	ip, err := getSamsungIp()
+	fmt.Println("searching tv ip...")
+	ip, err := getSamsungIpAdv(&SearchOpts{DebugLog: true})
 	if err != nil {
 		panic(err)
 	}
